@@ -1,59 +1,44 @@
-cmake_minimum_required(VERSION 3.5)
+Использованные языки и среды программирования:
+    C++
+    Qt Creator 7.0.1 Based on Qt 6.2.3(Clang 13.0 (Apple),64 bit)
 
-project(PCG_1Lab VERSION 0.1 LANGUAGES CXX)
+Основные объекты приложения:
 
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
+    Градиентный прямоугольник
+    Одноцветный прямоугольник
+    Три SpinBox
+    Три ComboBox
+    От трёх до четырёх полей ввода
+    Кнопка "Copy in Hex"
+    Кнопка "Select color"
 
-set(CMAKE_AUTOUIC ON)
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
+Реализованный функционал:
 
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+    Градиентный прямоугольник по нажатию клавиши позволяет выбрать цвет из градиентной палитры и задать текущим. Значения в полях ввода автоматически изменяются.
+    Одноцветный прямоугольник отображает текущий цвет.
+    SpinBox позволяют изменять текущий цвет более плавно.
+    Три ComboBox позволяют выбрать цветовые модели для конвертации цветов.
+    Количество полей ввода варьируется от трех до четырех в зависимости от выбранной цветовой модели. Позволяется изменение соответствующих параметров, автоматически происходит пересчет.
+Используемые библиотеки:
 
-find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
+	<QSpinBox>
+	<QLayout>
+	<QPalette>
+	<QClipboard>
+	<QColorDialog>
+	<QImage>
+	<QComboBox>
+	<QMouseEvent>
+	<string>
+Работа с репозиторием:
 
-set(PROJECT_SOURCES
-        main.cpp
-        mainwindow.cpp
-        mainwindow.h
-        mainwindow.ui
-)
+    В папке репозитория содержатся несколько исходных файлов. Основные файлы:
+    CMakeLists.txt
+    mainwindow.cpp
+    mainwindow.h
+    main.cpp
+    mainwindow.ui
 
-if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(PCG_1Lab
-        MANUAL_FINALIZATION
-        ${PROJECT_SOURCES}
-    )
-# Define target properties for Android with Qt 6 as:
-#    set_property(TARGET PCG_1Lab APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
-#                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
-# For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
-else()
-    if(ANDROID)
-        add_library(PCG_1Lab SHARED
-            ${PROJECT_SOURCES}
-        )
-# Define properties for Android with Qt 5 after find_package() calls as:
-#    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
-    else()
-        add_executable(PCG_1Lab
-            ${PROJECT_SOURCES}
-        )
-    endif()
-endif()
+Остальные файлы являются вспомогательными.
 
-target_link_libraries(PCG_1Lab PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
-
-set_target_properties(PCG_1Lab PROPERTIES
-    MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
-    MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
-    MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
-    MACOSX_BUNDLE TRUE
-    WIN32_EXECUTABLE TRUE
-)
-
-if(QT_VERSION_MAJOR EQUAL 6)
-    qt_finalize_executable(PCG_1Lab)
-endif()
+В архиве PCG_1Lab.zip содержится сборка приложения, его .exe и все необходимые библиотеки и файлы для корректного запуска.
