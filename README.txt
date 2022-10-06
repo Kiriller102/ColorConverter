@@ -1,3 +1,4 @@
+(Beta)
 Использованные языки и среды программирования:
     C++
     Qt Creator 7.0.1 Based on Qt 6.2.3(Clang 13.0 (Apple),64 bit)
